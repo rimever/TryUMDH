@@ -1,0 +1,74 @@
+// Debug library initialized ...
+7FF701F80000-7FF701FA4FFF DBGHELP: LeakSample - public symbols & lines 
+        C:\Work\Develop\TryUMDH\LeakSample\x64\Debug\LeakSample.pdb
+7FFFCC9E0000-7FFFCCBCFFFF DBGHELP: ntdll - public symbols  
+        C:\symbols.cache_pub\ntdll.pdb\CFD10E5F223FEE5F26227CB82510FEDC1\ntdll.pdb
+7FFFCB210000-7FFFCB2C1FFF DBGHELP: KERNEL32 - public symbols  
+        C:\symbols.cache_pub\kernel32.pdb\B6F0E183C96D92A697EFA1F4B153B8151\kernel32.pdb
+7FFFC9A50000-7FFFC9CF2FFF DBGHELP: KERNELBASE - public symbols  
+        C:\symbols.cache_pub\kernelbase.pdb\6B2094EB0FB16643D22E6B9F0B87928A1\kernelbase.pdb
+7FFFBA300000-7FFFBA323FFF DBGHELP: VCRUNTIME140D - private symbols & lines 
+        C:\symbols.cache_pub\vcruntime140d.amd64.pdb\A3075BBAD6BC4DAEAC0BCD5654EB1FC71\vcruntime140d.amd64.pdb
+7FFFA8790000-7FFFA8952FFF DBGHELP: ucrtbased - private symbols & lines 
+        C:\symbols.cache_pub\ucrtbased.pdb\E4D7BB733F52FE364C3DD3F37752FDC82\ucrtbased.pdb
+//                                                                          
+// Each log entry has the following syntax:                                 
+//                                                                          
+// + BYTES_DELTA (NEW_BYTES - OLD_BYTES) NEW_COUNT allocs BackTrace TRACEID 
+// + COUNT_DELTA (NEW_COUNT - OLD_COUNT) BackTrace TRACEID allocations      
+//     ... stack trace ...                                                  
+//                                                                          
+// where:                                                                   
+//                                                                          
+//     BYTES_DELTA - increase in bytes between before and after log         
+//     NEW_BYTES - bytes in after log                                       
+//     OLD_BYTES - bytes in before log                                      
+//     COUNT_DELTA - increase in allocations between before and after log   
+//     NEW_COUNT - number of allocations in after log                       
+//     OLD_COUNT - number of allocations in before log                      
+//     TRACEID - decimal index of the stack trace in the trace database     
+//         (can be used to search for allocation instances in the original  
+//         UMDH logs).                                                      
+//                                                                          
+
+
++    1a90 (  1a90 -     0)     64 allocs	BackTrace22BEA9A0
++      64 (    64 -     0)	BackTrace22BEA9A0	allocations
+
+	ntdll!RtlpCallInterceptRoutine+3F
+	ntdll!RtlpAllocateHeapInternal+78BA3
+	ucrtbased!heap_alloc_dbg_internal+1F6 (minkernel\crts\ucrt\src\appcrt\heap\debug_heap.cpp, 359)
+	ucrtbased!heap_alloc_dbg+4D (minkernel\crts\ucrt\src\appcrt\heap\debug_heap.cpp, 450)
+	ucrtbased!_malloc_dbg+2F (minkernel\crts\ucrt\src\appcrt\heap\debug_heap.cpp, 496)
+	ucrtbased!malloc+1E (minkernel\crts\ucrt\src\appcrt\heap\malloc.cpp, 27)
+	LeakSample!operator new+13 (d:\agent\_work\3\s\src\vctools\crt\vcstartup\src\heap\new_scalar.cpp, 35)
+	LeakSample!heapleak+3F (C:\Work\Develop\TryUMDH\LeakSample\LeakSample\LeakSample.cpp, 11)
+	LeakSample!main+4C (C:\Work\Develop\TryUMDH\LeakSample\LeakSample\LeakSample.cpp, 24)
+	LeakSample!invoke_main+39 (d:\agent\_work\3\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl, 79)
+	LeakSample!__scrt_common_main_seh+12E (d:\agent\_work\3\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl, 288)
+	LeakSample!__scrt_common_main+E (d:\agent\_work\3\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl, 331)
+	LeakSample!mainCRTStartup+9 (d:\agent\_work\3\s\src\vctools\crt\vcstartup\src\startup\exe_main.cpp, 17)
+	KERNEL32!BaseThreadInitThunk+14
+	ntdll!RtlUserThreadStart+21
+
+-     110 (     0 -   110)      0 allocs	BackTrace22BEA4A0
+-       2 (     0 -     2)	BackTrace22BEA4A0	allocations
+
+	ntdll!RtlpCallInterceptRoutine+3F
+	ntdll!RtlpAllocateHeapInternal+78BA3
+	ntdll!TppAllocThreadData+41
+	ntdll!TppWorkerThread+A6
+	KERNEL32!BaseThreadInitThunk+14
+	ntdll!RtlUserThreadStart+21
+
+-     720 (     0 -   720)      0 allocs	BackTrace22BEA520
+-       2 (     0 -     2)	BackTrace22BEA520	allocations
+
+	ntdll!RtlpCallInterceptRoutine+3F
+	ntdll!RtlpAllocateHeapInternal+78BA3
+	ntdll!TppWorkerThread+AA8
+	KERNEL32!BaseThreadInitThunk+14
+	ntdll!RtlUserThreadStart+21
+
+
+Total increase ==   1260 requested +   1080 overhead =   22e0

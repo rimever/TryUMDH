@@ -1,0 +1,3 @@
+﻿  LeakSample.cpp
+C:\Work\Develop\TryUMDH\LeakSample\LeakSample\Leak.h(1,1): warning C4067:  プリプロセッサ ディレクティブの後に余分な文字がありました - 改行が必要です
+  LeakSample.vcxproj -> C:\Work\Develop\TryUMDH\LeakSample\x64\Debug\LeakSample.exe
